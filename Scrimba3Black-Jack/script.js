@@ -6,32 +6,27 @@
 
 // 2. Reassign the message variable to the string we're logging out
 
-let firstCard = 12;
+let message = "";
+let firstCard = 9;
 let secondCard = 10;
 
 let sum = firstCard + secondCard;
 
-let complete = false
-let isAlive = true 
+let complete = false;
+let isAlive = true;
 
-
-if (sum < 21) {
-  console.log("draw a new card");
- 
-} else if (sum === 21) {
-  console.log("you win");
-  complete=true
-}else {
-    console.log("you loose");
-     isAlive=false
-    
+function startGame() {
+  if (sum < 21) {
+    message = "Do you want to draw a new card? 🙂";
+  } else if (sum === 21) {
+    message = "Wohoo! You've got Blackjack! 🥳";
+    complete = true;
+  } else {
+    message = "You're out of the game! 😭";
+    isAlive = false;
+  }
+  if (complete) {
+    console.log("you win $300");
+  }
+  console.log(message);
 }
-
-if(complete){
-    console.log("you win $300")
-}
-
-if(!isAlive){
-    console.log("you are out of the game")
-}
-
