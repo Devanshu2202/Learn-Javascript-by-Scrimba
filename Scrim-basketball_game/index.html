@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+    <body class="bg-[#1B244A] min-h-screen flex items-center justify-center">
+        <div class="container flex gap-17" >
+            
+            <div>
+                <h3 class="text-white text-5xl">HOME</h3>
+
+                <div id="home" class="text-7xl font-bold mb-7 text-col text-white">0</div>
+                <div class="flex gap-3">
+                    <button onclick="addIncrement1()" class="text-3xl text-white">+1</button>
+                    <button onclick="addIncrement2()" class="text-3xl text-white">+2</button>
+                    <button onclick="addIncrement3()" class="text-3xl text-white">+3</button>
+                </div>
+            </div>
+            <button onclick="reset()" class="text-5xl text-white">Reset</button>
+            <div>   
+               <h3  class="text-white text-5xl">Guest</h3>
+
+               <div id="guest" class="text-7xl font-bold mb-7 text-col text-white">0</div>
+                <div class="flex gap-3">
+                    <button onclick="addIncGuest1()" class="text-3xl text-white">+1</button>
+                    <button onclick="addIncGuest2()" class="text-3xl text-white">+2</button>
+                    <button onclick="addIncGuest3()" class="text-3xl text-white">+3</button>
+                </div> 
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
