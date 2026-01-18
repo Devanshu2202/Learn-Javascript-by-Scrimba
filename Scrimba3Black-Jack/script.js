@@ -6,16 +6,23 @@
 
 // 2. Reassign the message variable to the string we're logging out
 
+// 1. Store the message-el paragraph in a variable called messageEl
+
+let messageEl = document.getElementById("message-el")
+
 let message = "";
-let firstCard = 9;
+let firstCard = 11;
 let secondCard = 10;
 
 let sum = firstCard + secondCard;
 
 let complete = false;
 let isAlive = true;
+let sumEl = document.getElementById("sum-el")
 
 function startGame() {
+
+  sumEl.textContent += sum
   if (sum < 21) {
     message = "Do you want to draw a new card? 🙂";
   } else if (sum === 21) {
@@ -28,5 +35,6 @@ function startGame() {
   if (complete) {
     console.log("you win $300");
   }
-  console.log(message);
+    // 2. Display the message in the messageEl using messageEl.textContent
+    messageEl.textContent = message
 }
