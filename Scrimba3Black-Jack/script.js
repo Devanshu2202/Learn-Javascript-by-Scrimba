@@ -43,3 +43,8 @@ function startGame() {
     // 2. Display the message in the messageEl using messageEl.textContent
     messageEl.textContent = message
 }
+
+function newCard(){
+  console.log("Drawing a new card from the deck!");
+  
+}
