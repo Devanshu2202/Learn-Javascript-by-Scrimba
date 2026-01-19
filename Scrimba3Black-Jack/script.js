@@ -19,10 +19,15 @@ let sum = firstCard + secondCard;
 let complete = false;
 let isAlive = true;
 let sumEl = document.getElementById("sum-el")
+let cardsEl = document.getElementById("cards-el")
 
 function startGame() {
 
+  cardsEl.textContent +=  firstCard + " " + secondCard
+
+
   sumEl.textContent += sum
+  
   if (sum < 21) {
     message = "Do you want to draw a new card? 🙂";
   } else if (sum === 21) {
