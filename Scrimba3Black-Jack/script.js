@@ -22,9 +22,9 @@ let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("cards-el");
 
 function startGame() {
-  cardsEl.textContent += firstCard + " " + secondCard;
+  cardsEl.textContent ="Card: "+ firstCard + " " + secondCard;
 
-  sumEl.textContent += sum;
+  sumEl.textContent ="Sum: " + sum;
 
   if (sum < 21) {
     message = "Do you want to draw a new card? 🙂";
