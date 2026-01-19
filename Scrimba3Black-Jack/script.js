@@ -8,26 +8,24 @@
 
 // 1. Store the message-el paragraph in a variable called messageEl
 
-let messageEl = document.getElementById("message-el")
+let messageEl = document.getElementById("message-el");
 
 let message = "";
-let firstCard = 11;
+let firstCard = 9;
 let secondCard = 10;
 
 let sum = firstCard + secondCard;
 
 let complete = false;
 let isAlive = true;
-let sumEl = document.getElementById("sum-el")
-let cardsEl = document.getElementById("cards-el")
+let sumEl = document.getElementById("sum-el");
+let cardsEl = document.getElementById("cards-el");
 
 function startGame() {
+  cardsEl.textContent += firstCard + " " + secondCard;
 
-  cardsEl.textContent +=  firstCard + " " + secondCard
+  sumEl.textContent += sum;
 
-
-  sumEl.textContent += sum
-  
   if (sum < 21) {
     message = "Do you want to draw a new card? 🙂";
   } else if (sum === 21) {
@@ -40,11 +38,20 @@ function startGame() {
   if (complete) {
     console.log("you win $300");
   }
-    // 2. Display the message in the messageEl using messageEl.textContent
-    messageEl.textContent = message
+  // 2. Display the message in the messageEl using messageEl.textContent
+  messageEl.textContent = message;
 }
 
-function newCard(){
+function newCard() {
   console.log("Drawing a new card from the deck!");
-  
+
+  let Card = 5;
+  sum += Card;
+  startGame();
 }
+
+// 1. Create a card variable, and hard code its value to a number (2-11)
+
+// 2. Add the new card to the sum variable
+
+// 3. Call startGame()
