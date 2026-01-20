@@ -11,8 +11,11 @@
 let messageEl = document.getElementById("message-el");
 
 let message = "";
-let firstCard = 9;
+let firstCard = 11;
 let secondCard = 10;
+//  1. Create a new array - cards - that contains firstCard and secondCard
+
+let cards = [firstCard, secondCard];
 
 let sum = firstCard + secondCard;
 
@@ -21,10 +24,17 @@ let isAlive = true;
 let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("cards-el");
 
-function startGame() {
-  cardsEl.textContent ="Card: "+ firstCard + " " + secondCard;
+// Create a new function called startGame() that calls renderGame()
 
-  sumEl.textContent ="Sum: " + sum;
+function startGame() {
+  renderGame();
+}
+
+function renderGame() {
+  // 2. Refer to the cards array when rendering out the cards
+  cardsEl.textContent = "Card:" + cards[0] + " " + cards[1];
+
+  sumEl.textContent = "Sum: " + sum;
 
   if (sum < 21) {
     message = "Do you want to draw a new card? 🙂";
@@ -43,15 +53,11 @@ function startGame() {
 }
 
 function newCard() {
+  // Push the card to the cards array
   console.log("Drawing a new card from the deck!");
 
-  let Card = 5;
-  sum += Card;
-  startGame();
+  let card = 5;
+  sum += card;
+  cards.push(card);
+  renderGame();
 }
-
-// 1. Create a card variable, and hard code its value to a number (2-11)
-
-// 2. Add the new card to the sum variable
-
-// 3. Call startGame()
