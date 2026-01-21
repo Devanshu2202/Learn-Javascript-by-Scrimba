@@ -11,7 +11,7 @@
 let messageEl = document.getElementById("message-el");
 
 let message = "";
-let firstCard = 11;
+let firstCard = 5;
 let secondCard = 10;
 //  1. Create a new array - cards - that contains firstCard and secondCard
 
@@ -32,7 +32,12 @@ function startGame() {
 
 function renderGame() {
   // 2. Refer to the cards array when rendering out the cards
-  cardsEl.textContent = "Card:" + cards[0] + " " + cards[1];
+  // Create a for loop that renders out all the cards instead of just two
+  cardsEl.textContent = "Cards: ";
+  for (let i = 0; i < cards.length; i++) {
+    cardsEl.textContent += cards[i] + " ";
+    console.log("UI", cards[i]);
+  }
 
   sumEl.textContent = "Sum: " + sum;
 
@@ -56,8 +61,11 @@ function newCard() {
   // Push the card to the cards array
   console.log("Drawing a new card from the deck!");
 
-  let card = 5;
+  let card = 1;
   sum += card;
   cards.push(card);
+  console.log("Cardss", cards);
+  console.log("Card", card);
+
   renderGame();
 }
