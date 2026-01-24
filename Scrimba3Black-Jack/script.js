@@ -1,42 +1,48 @@
-// 1. Create two variables, firstCard and secondCard.
-// Set their values to a random number between 2-11
-
-// 2. Create a variable, sum, and set it to the sum of the two cards
-// 1. Declare a variable called message and assign its value to an empty string
-
-// 2. Reassign the message variable to the string we're logging out
-
-// 1. Store the message-el paragraph in a variable called messageEl
-
 let messageEl = document.getElementById("message-el");
 
 let message = "";
-let firstCard = 5;
-let secondCard = 10;
-//  1. Create a new array - cards - that contains firstCard and secondCard
 
-let cards = [firstCard, secondCard];
+let cards = [];
 
-let sum = firstCard + secondCard;
+let sum = 0;
 
-let complete = false;
-let isAlive = true;
+let hasBlackJack = false;
+let isAlive = false;
 let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("cards-el");
+let playerEl = document.getElementById("player-el");
+let player = {
+  name: "Devanshu",
+  chips: 33445,
+};
 
-// Create a new function called startGame() that calls renderGame()
+function getRandomCard() {
+  let randomCardNUmber = Math.floor(Math.random() * 13) + 1;
+
+  if (randomCardNUmber === 1) {
+    return 11;
+  } else if (randomCardNUmber > 10) {
+    return 10;
+  } else {
+    return randomCardNUmber;
+  }
+}
 
 function startGame() {
+  isAlive = true;
+
+  let firstCard = getRandomCard();
+  let secondCard = getRandomCard();
+
+  cards = [firstCard, secondCard];
+  sum = firstCard + secondCard;
   renderGame();
 }
 
 function renderGame() {
-  // 2. Refer to the cards array when rendering out the cards
-  // Create a for loop that renders out all the cards instead of just two
   cardsEl.textContent = "Cards: ";
   for (let i = 0; i < cards.length; i++) {
     cardsEl.textContent += cards[i] + " ";
-    console.log("UI", cards[i]);
   }
 
   sumEl.textContent = "Sum: " + sum;
@@ -45,27 +51,23 @@ function renderGame() {
     message = "Do you want to draw a new card? 🙂";
   } else if (sum === 21) {
     message = "Wohoo! You've got Blackjack! 🥳";
-    complete = true;
+    hasBlackJack = true;
   } else {
     message = "You're out of the game! 😭";
     isAlive = false;
   }
-  if (complete) {
-    console.log("you win $300");
+  if (hasBlackJack) {
   }
-  // 2. Display the message in the messageEl using messageEl.textContent
   messageEl.textContent = message;
+  playerEl.textContent = player.name + " $" + player.chips;
 }
 
 function newCard() {
-  // Push the card to the cards array
-  console.log("Drawing a new card from the deck!");
-
-  let card = 1;
-  sum += card;
-  cards.push(card);
-  console.log("Cardss", cards);
-  console.log("Card", card);
+  if (isAlive === true && hasBlackJack === false) {
+    let card = getRandomCard();
+    sum += card;
+    cards.push(card);
+  }
 
   renderGame();
 }
