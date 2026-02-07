@@ -101,12 +101,12 @@ function generatePassword() {
   let password1 = "";
   let password2 = "";
 
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < 16; i++) {    
     let randomIndex1 = Math.floor(Math.random() * characters.length);
     let randomIndex2 = Math.floor(Math.random() * characters.length);
     password1 += characters[randomIndex1];
     password2 += characters[randomIndex2];
     passwordEl1.textContent = password1;
-    passwordEl2.textContent = password2;
+    passwordEl2.textContent = password2; 
   }
 }
