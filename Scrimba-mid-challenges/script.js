@@ -1,36 +1,40 @@
-// const emojis = ['🐥','🐯','🐼']
-// console.log(emojis.includes('🐴'))
+const container = document.getElementById('container')
 
-const addItemBtn = document.getElementById("add-item-btn");
-const itemInput = document.getElementById("item-input");
-const list = document.getElementById("list");
+const products = [
+    {
+        name: 'Ostrich Pillow',
+        price: '10',
+        image: 'ostrichpillow.jpg',
+        id: 'ostrich-pillow'
+    },
+    {
+        name: 'Bacon Bandages',
+        price: '8',
+        image: 'bacon-bandage.jpg',
+        id: 'bacon-bandages'
+    },
+    {
+        name: 'Baby Mop',
+        price: '20',
+        image: 'babymop.jpg',
+        id: 'baby-mop'
+    }
+]
 
-const shoppingList = [];
+let productsHtml = ``
 
-addItemBtn.addEventListener("click", function () {
-  if (shoppingList.includes(itemInput.value)) {
-    console.log("no duplicates");
-  } else {
-    shoppingList.push(itemInput.value);
-    render();
-  }
-  itemInput.value = "";
-  /*
-Challenge:
-1. Add an if else to the event listener's function.
-2. Only add an item to the shoppingList array if it 
-   is not already in the shoppingList array.
-3. If an item is a duplicate, clear the input field
-   and log out "no duplicates".
-*/
-});
-
-function render() {
-  let html = "";
-  for (let item of shoppingList) {
-    html += `<li class="list-item">${item}</li>`;
-  }
-  list.innerHTML = html;
+for (let product of products){
+    productsHtml += `
+    <div class="product">
+        <h3>${product.name}</h3>
+         <h4> £${product.price}</h4>
+        <img src="${product.image}">
+        <button id="${product.id}">Buy Now</button>
+    </div>
+    `
 }
+container.innerHTML = productsHtml
 
-render();
+container.addEventListener('click', function(e){
+    console.log(e.target.id)
+})
