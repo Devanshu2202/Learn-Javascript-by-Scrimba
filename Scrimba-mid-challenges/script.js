@@ -1,34 +1,36 @@
-const characters = [
-  {
-    title: "Ninja",
-    emoji: "🥷",
-    powers: ["agility", "stealth", "aggression"],
-  },
-  {
-    title: "Sorcerer",
-    emoji: "🧙",
-    powers: ["magic", "invisibility", "necromancy"],
-  },
-  {
-    title: "Ogre",
-    emoji: "👹",
-    powers: ["power", "stamina", "shapeshifting"],
-  },
-  {
-    title: "Unicorn",
-    emoji: "🦄",
-    powers: ["flight", "power", "purity"],
-  },
-];
+// const emojis = ['🐥','🐯','🐼']
+// console.log(emojis.includes('🐴'))
 
-for (let character of characters) {
-  for (let power of character.powers) {
-    console.log(power);
+const addItemBtn = document.getElementById("add-item-btn");
+const itemInput = document.getElementById("item-input");
+const list = document.getElementById("list");
+
+const shoppingList = [];
+
+addItemBtn.addEventListener("click", function () {
+  if (shoppingList.includes(itemInput.value)) {
+    console.log("no duplicates");
+  } else {
+    shoppingList.push(itemInput.value);
+    render();
   }
+  itemInput.value = "";
   /*
 Challenge:
-1. Nest a for of inside this for of to iterate over 
-   the powers array for each character. Log out each 
-   power.
+1. Add an if else to the event listener's function.
+2. Only add an item to the shoppingList array if it 
+   is not already in the shoppingList array.
+3. If an item is a duplicate, clear the input field
+   and log out "no duplicates".
 */
+});
+
+function render() {
+  let html = "";
+  for (let item of shoppingList) {
+    html += `<li class="list-item">${item}</li>`;
+  }
+  list.innerHTML = html;
 }
+
+render();
