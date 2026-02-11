@@ -1,36 +1,43 @@
-import { catsData } from "./data.js";
+import { catsData } from './data.js'
 
-const emotionRadios = document.getElementById("emotion-radios");
 
-function getEmotionsArray(cats) {
-  const emotionsArray = [];
+const emotionRadios = document.getElementById('emotion-radios')
 
-  for (let cat of cats) {
-    for (let emotion of cat.emotionTags) {
-      if (emotionsArray.includes(emotion)) {
-        console.log("no emotions");
-      } else {
-        emotionsArray.push(emotion);
-      }
+emotionRadios.addEventListener('change', highlightCheckedOption)
 
-      /*
+function highlightCheckedOption(e){
+    
+
+    document.getElementById(e.target.id).parentElement.classList.add("highlight")
+/*
 Challenge:
-1. Refactor this nested for of so that an 
-   emotion is only pushed to emotionsArray
-   if it is not already in emotionsArray.
-   Extra kudos if you use the "logical not"
-   operator - feel free to google it!
+1. highlightCheckedOption should take control 
+   of the selected radio idd the CSSnput and a
+   class of "highlight" to its classlist.
 */
+
+}
+ 
+
+function getEmotionsArray(cats){
+    const emotionsArray = []    
+    for (let cat of cats){
+        for (let emotion of cat.emotionTags){
+            if (!emotionsArray.includes(emotion)){
+                emotionsArray.push(emotion)
+            }
+        }
     }
-  }
-  return emotionsArray;
+    return emotionsArray
 }
 
-function renderEmotionsRadios(cats) {
-  let radioItems = ``;
-  const emotions = getEmotionsArray(cats);
-  for (let emotion of emotions) {
-    radioItems += `
+
+function renderEmotionsRadios(cats){
+        
+    let radioItems = ``
+    const emotions = getEmotionsArray(cats)
+    for (let emotion of emotions){
+        radioItems += `
         <div class="radio">
             <label for="${emotion}">${emotion}</label>
             <input
@@ -39,9 +46,9 @@ function renderEmotionsRadios(cats) {
             value="${emotion}"
             name="emotions"
             >
-        </div>`;
-  }
-  emotionRadios.innerHTML = radioItems;
+        </div>`
+    }
+    emotionRadios.innerHTML = radioItems
 }
 
-renderEmotionsRadios(catsData);
+renderEmotionsRadios(catsData)
