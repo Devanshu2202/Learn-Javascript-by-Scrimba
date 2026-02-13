@@ -1,10 +1,14 @@
-document.addEventListener('click', function(e){
+// We can much more easily target pseudo elements like :checked
+const submitBtn = document.getElementById('submit-btn')
+
+submitBtn.addEventListener('click', function() {
+    const checkedRadio = document.querySelector('input[type="radio"]:checked')
+    console.log(checkedRadio.value)
+})
+
 /*
 Challenge:
-1. Remove the "unread" class from the 
-   parentElement of the clicked element.
+1. Muscle memory exercise: log out 
+   the value of the checked radio 
+   option.
 */
-    document.getElementById(e.target.id).parentElement.classList.add('read')
-    
-    document.getElementById(e.target.id).parentElement.classList.remove('unread')
-})

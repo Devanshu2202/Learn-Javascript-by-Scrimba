@@ -1,51 +1,41 @@
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
 body{
     font-family: 'Roboto', sans-serif;
-    color: #0c4a6e;
+    color: #333;
 }
 
-.container{
+h3{
+  font-size: 18px;  
+}
+
+.radios{
     display: flex;
     flex-direction: column;
-    width: 380px;
-    margin: 40px auto;
-    padding: 25px;
-    align-items: center;
-    border: 3px solid #a5f3fc;
-    border-radius: 3px;
-    background-color: deepskyblue;
+    gap: 5px;
 }
 
-.message{
+main{
+    width: 340px;
+    margin: 0 auto;
+}
+
+.opponents{
     display: flex;
-    gap: 20px;
-    padding: 8px;
-    justify-content: space-between;
-    width: 100%;
-    font-size: 14px;
-    border-radius: 3px;
-    margin-bottom: 3px;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
 }
 
-.from{
-    width: 95px;
+.small{
+ font-size: 30px   
 }
 
-.message-text{
-    width: 200px;
+.large{ 
+ font-size: 70px   
 }
 
-.unread{
-    font-weight: 800;
-    border: 2px solid #0369a1;
-    background-color: #a5f3fc;
-}
-.read{
-    font-weight: 400;
-    border: 2px solid #a5f3fc;
-    background-color: white;
+button{
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px 0;
+    cursor: pointer;
 }
