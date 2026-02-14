@@ -1,13 +1,26 @@
 import { catsData } from './data.js'
 
-
 const emotionRadios = document.getElementById('emotion-radios')
 const getImageBtn = document.getElementById('get-image-btn')
-const gifsOnlyOtion = document.getElementById("gifs-only-option")
+const gifsOnlyOption = document.getElementById('gifs-only-option')
+const memeModalInner = document.getElementById('meme-modal-inner')
+const memeModal = document.getElementById('meme-modal') 
+const memeModalCloseBtn = document.getElementById('meme-modal-close-btn') 
 
 emotionRadios.addEventListener('change', highlightCheckedOption)
 
-getImageBtn.addEventListener('click', getMatchingCatsArray)
+getImageBtn.addEventListener('click', renderCat)
+
+memeModalCloseBtn.addEventListener("click",function(){
+     memeModal.style.display = "none" 
+})
+
+
+/*
+Challenge:
+1. Wire up the X button in the modal so
+   it closes the modal.
+*/ 
 
 function highlightCheckedOption(e){
     const radios = document.getElementsByClassName('radio')
@@ -17,32 +30,69 @@ function highlightCheckedOption(e){
     document.getElementById(e.target.id).parentElement.classList.add('highlight')
 }
 
-
-function getMatchingCatsArray(){
-
-const isGif = gifsOnlyOtion.checked
-
-console.log(isGif);
-    
-
-    
-/*
-Challenge:
-1. Take control of the gifs only option checkbox.
-2. Set up a const in getMatchingCatsArray to store 
-   a boolean which will be set to true if the 
-   "gifs only" option is checked and false if it's
-   not. (Think what a good name for this const would 
-   be.)
-3. Log it out to check it's working.
-*/
-     
+function getMatchingCatsArray(){     
     if(document.querySelector('input[type="radio"]:checked')){
         const selectedEmotion = document.querySelector('input[type="radio"]:checked').value
-        console.log(selectedEmotion)  
-    }  
+        const isGif = gifsOnlyOption.checked
+        
+        const matchingCatsArray = catsData.filter(function(cat){
+            
+            if(isGif){
+                return cat.emotionTags.includes(selectedEmotion) && cat.isGif
+            }
+            else{
+                return cat.emotionTags.includes(selectedEmotion)
+            }            
+        })
+        return matchingCatsArray 
+    }   
 }
 
+function getSingleCatObject(){
+    
+    const catsArray = getMatchingCatsArray()
+    
+    if (catsArray.length === 1){
+        return catsArray[0]
+    }
+    else {
+        const randomNumber = Math.floor(Math.random() * catsArray.length)
+        return catsArray[randomNumber]
+    }
+    
+}
+
+function renderCat(){
+
+    const catObject = getSingleCatObject()
+    console.log(catObject);
+    
+
+    memeModalInner.innerHTML =  `<img 
+        class="cat-img" 
+        src="./images/${catObject.image}"
+        alt="${catObject.alt}"
+        >`
+
+        memeModal.style.display = "flex"
+/*
+Challenge:
+1. Take the object that is returned by 
+   getSingleCatObject and save it to a const 
+   called "catObject".
+2. Set memeModalInner’s innerHTML to the HTML 
+   string below, remembering to insert the relevant 
+   data from catObject to replace the UPPERCASE text.
+3. Set memeModal’s display property to "flex". 
+ 
+       `<img 
+        class="cat-img" 
+        src="./images/CAT IMAGE"
+        alt="CAT ALT TEXT"
+        >`
+*/ 
+}
+ 
 function getEmotionsArray(cats){
     const emotionsArray = []    
     for (let cat of cats){
