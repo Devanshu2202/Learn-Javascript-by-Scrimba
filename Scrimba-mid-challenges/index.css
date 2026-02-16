@@ -1,51 +1,42 @@
 html, body {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto';   
 }
 
-body, button {
-    font-family: 'Poppins'
+h1{
+    margin: 10px 0 20px 0;
+    font-family: 'Henny Penny', sans-serif;
+    font-size: 26px;
 }
 
-main {
-    background-image: url('/fantasybg.png');
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+header, main{
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
 }
 
-.container {
-    background-color: rgba(255, 255, 255, .7);
-    border-radius: 5px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 32px; 
+header{
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
-form {
-    width: 230px;
+img{
+    width: 150px;
 }
 
-label {
-    font-weight: 700;
-    color: #222;
+button{
+    padding: 10px 17px;
+    width: 250px;
+    font-family: 'Roboto';
+    font-size: 20px;
+    cursor: pointer;
 }
 
-select {
-    margin: 10px 0;
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px; 
-}
-
-button {
-    width: 100%;
-    border: 0;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #444;
-    color: #ffffff;
+textarea{
+    width: 239px;
+    height: 50px;
+    margin: 0px;
+    padding: 5px;
+    resize: none;
 }

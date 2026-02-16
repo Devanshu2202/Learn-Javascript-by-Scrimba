@@ -1,10 +1,7 @@
-const superwoerform = document.getElementById("superwoerform")
-superwoerform.addEventListener("submit",logchosensuperpower)
+const talkBtn = document.getElementById("talk-btn")
+const chatInput = document.getElementById("chat-input")
 
-
-function logchosensuperpower(e){
-    e.preventDefault()
- console.log(document.getElementById("superpowers").value);
-     
+talkBtn.addEventListener("click",function(){
+    console.log(chatInput.value);
     
-}
+})
