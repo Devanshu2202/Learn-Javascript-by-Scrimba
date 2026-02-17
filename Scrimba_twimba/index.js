@@ -1,20 +1,17 @@
-import { tweetsData } from "./data.js";
-const tweetInput = document.getElementById("tweet-input");
-const tweetBtn = document.getElementById("tweet-btn");
+import { tweetsData } from './data.js'
+const tweetInput = document.getElementById('tweet-input')
+const tweetBtn = document.getElementById('tweet-btn')
 
-tweetBtn.addEventListener("click", function () {
-  console.log(tweetInput.value);
-});
+tweetBtn.addEventListener('click', function(){
+    console.log(tweetInput.value)
+})
 
-function getFeedHtml() {
-  /*
-Challenge:
-1. Replace the for of with a forEach.
-*/
-
-  let feedHtml = ``;
-  tweetsData.forEach(function (tweet) {
-    feedHtml += `
+function getFeedHtml(){
+    
+    let feedHtml = ``
+    
+    tweetsData.forEach(function(tweet){
+        feedHtml += `
 <div class="tweet">
     <div class="tweet-inner">
         <img src="${tweet.profilePic}" class="profile-pic">
@@ -35,10 +32,24 @@ Challenge:
         </div>            
     </div>
 </div>
-`;
-  });
-
-  return feedHtml;
+`
+   })
+   return feedHtml 
 }
 
-console.log(getFeedHtml());
+function render(){
+
+    const feed = document.getElementById("feed")
+
+    feed.innerHTML = getFeedHtml()
+/*
+Challenge:
+1. Take control of the ‘feed’ div.
+2. Render the HTML returned by the getFeedHtml 
+   function to the 'feed' div. 
+   See if you can do this with just one line of code!
+*/
+}
+render()
+
+// call render
