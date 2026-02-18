@@ -1,43 +1,46 @@
-import { tweetsData } from "./data.js";
-const tweetInput = document.getElementById("tweet-input");
-const tweetBtn = document.getElementById("tweet-btn");
+import { tweetsData } from './data.js'
+const tweetInput = document.getElementById('tweet-input')
+const tweetBtn = document.getElementById('tweet-btn')
 
-tweetBtn.addEventListener("click", function () {
-  console.log(tweetInput.value);
-});
+tweetBtn.addEventListener('click', function(){
+    console.log(tweetInput.value)
+})
 
-document.addEventListener("click", function (e) {
-  if (e.target.dataset.like) {
-    handleLikeClick(e.target.dataset.like);
-  }
-});
+document.addEventListener('click', function(e){
+    if(e.target.dataset.like){
+       handleLikeClick(e.target.dataset.like) 
+    }
+})
 
-function handleLikeClick(tweetId) {
-  const targetTweetObjfetch = tweetsData.filter((tweet)=> tweet.uuid===tweetId);
-  const targetTweetObj = targetTweetObjfetch[0]
-  targetTweetObj.likes++
-  console.log(targetTweetObj);
-  
-
-  /*
+function handleLikeClick(tweetId){ 
+    const targetTweetObj = tweetsData.filter(function(tweet){
+        return tweet.uuid === tweetId
+    })[0]
+    
+    if(targetTweetObj.isLiked){
+      targetTweetObj.isLiked=false
+      targetTweetObj.likes--
+    }else {
+      targetTweetObj.isLiked=true
+      targetTweetObj.likes++
+    }
+/*
 Challenge:
-1. Iterate over tweetsData and use the uuid 
-   saved in tweetId to identify the liked
-   tweet's object. Save that object to a 
-   new const called 'targetTweetObj'.
-⚠️ targetTweetObj should hold an object, NOT
-   an array.
-2. Increment targetTweetObj's 'likes' count 
-   by 1.
-3. Log out targetTweetObj.
-*/
+1. When a tweet is liked, it's 'isLiked' property
+   should be set to true.
+2. When a tweet is unliked, it's 'isLiked' property
+   should be set to false and its 'likes' count
+   should be decremented.
+*/   
+    
+    render()
 }
 
-function getFeedHtml() {
-  let feedHtml = ``;
-
-  tweetsData.forEach(function (tweet) {
-    feedHtml += `
+function getFeedHtml(){
+    let feedHtml = ``
+    
+    tweetsData.forEach(function(tweet){
+        feedHtml += `
 <div class="tweet">
     <div class="tweet-inner">
         <img src="${tweet.profilePic}" class="profile-pic">
@@ -67,13 +70,13 @@ function getFeedHtml() {
         </div>            
     </div>
 </div>
-`;
-  });
-  return feedHtml;
+`
+   })
+   return feedHtml 
 }
 
-function render() {
-  document.getElementById("feed").innerHTML = getFeedHtml();
+function render(){
+    document.getElementById('feed').innerHTML = getFeedHtml()
 }
 
-render();
+render()
