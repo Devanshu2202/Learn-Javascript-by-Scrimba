@@ -1,41 +1,13 @@
-const characters = [
-    {
-        title: 'Ninja',
-        emoji: '🥷',
-        powers: ['agility', 'stealth', 'aggression'],
-    },
-    {
-        title: 'Sorcerer',
-        emoji: '🧙',
-        powers: ['magic', 'invisibility', 'necromancy'],
-    },
-    { 
-        title: 'Ogre',
-        emoji: '👹',
-        powers: ['power', 'stamina', 'shapeshifting'],
-    },  
-    { 
-        title: 'Unicorn',
-        emoji: '🦄',
-        powers: [ 'flight', 'power', 'purity'],
+document.addEventListener('click', function(e) {
+    if (e.target.dataset.share){
+        console.log(e.target.dataset.share)
     }
-]
-
-// for (let character of characters){
-//     console.log(character)   
-// }
-
-characters.forEach(function(character){
-    // console.log(character);
-    
-    character.powers.forEach(function(power){
-        console.log(power);
-        
-    })
-    // console.log(character.powers.length)
+    else if (e.target.dataset.heart){
+        console.log(e.target.dataset.heart)
+    }
 /*
 Challenge:
-1. Nest a forEach to log out each individual
-   power in each characters powers array.
+2. Make clicking on the heart icon log out
+   the id of the image.
 */
 })
