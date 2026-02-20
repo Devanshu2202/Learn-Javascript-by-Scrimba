@@ -1,14 +1,14 @@
 import { tweetsData } from "./data.js";
-const tweetInput = document.getElementById("tweet-input");
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
-  document.addEventListener("click", function (e) {
+document.addEventListener("click", function (e) {
   if (e.target.dataset.like) {
     handleLikeClick(e.target.dataset.like);
   } else if (e.target.dataset.retweet) {
     handleRetweetClick(e.target.dataset.retweet);
   } else if (e.target.dataset.reply) {
     handleReplyClick(e.target.dataset.reply);
-  } else if (e.target.id === tweet-btn) {
+  } else if (e.target.id === "tweet-btn") {
     handleTweetBtnClick();
   }
   /*
@@ -59,7 +59,43 @@ Challenge:
 }
 
 function handleTweetBtnClick() {
-  console.log(tweetInput.value);
+  const tweetInput = document.getElementById("tweet-input");
+
+  if (!tweetInput.value) {
+    return;
+  }
+
+  tweetsData.unshift({
+    handle: `@Scrimba`,
+    profilePic: `images/scrimbalogo.png`,
+    likes: 0,
+    retweets: 0,
+    tweetText: tweetInput.value,
+    replies: [],
+    isLiked: false,
+    isRetweeted: false,
+    uuid: uuidv4(),
+  });
+
+  render();
+
+  tweetInput.value = "";
+  /*
+Challenge:
+1. Add the new tweet object to 'tweetsData'
+   and make it render at the top of the feed. 
+*/
+
+  /*
+Challenge:
+2. When the Tweet button is clicked, log out an object
+   for a new tweet. Make sure you include the text of 
+   the tweet (how can you get that?) and a unique 
+   identifier using uuidjs.
+   
+   The handle @Scrimba (or whatever you prefer) and 
+   the profile pic scrimbalogo.png can be hard-coded.
+*/
 }
 
 function getFeedHtml() {
