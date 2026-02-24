@@ -3,8 +3,7 @@ const swissBankPassCodesArr = [1234,5678,9876,3434]
 
 function authenticationCheck(passCode){
 
-    swissBankPassCodesArr.includes(passCode) && accountBalanceUsd
-    console.log(accountBalanceUsd);
+    swissBankPassCodesArr.includes(passCode) && console.log(accountBalanceUsd);
     
 /*
 Challenge:
