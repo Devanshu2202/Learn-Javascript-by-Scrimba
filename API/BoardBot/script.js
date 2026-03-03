@@ -1,32 +1,27 @@
 /**
 Challenge:
 
-1. Google for "how to use fetch with json"
-2. Should find a top result from MDN
-3. MANUALLY copy over the fetch, but using the URL below 👇
-    https://dog.ceo/api/breeds/image/random
-    https://jsonplaceholder.typicode.com/comments
-    https://jsonplaceholder.typicode.com/todos
-    https://jsonplaceholder.typicode.com/users
-    
+1. Fetch a random image from the Dog API again 
+(https://dog.ceo/api/breeds/image/random)
+
+2. Access the DOM and insert the URL you got from the
+API as an image src property (probably easiest if 
+you create the image completely here in the JS and add 
+it as the innerHTML of another element on the DOM)
 */
-let dataStore = document.getElementById("datastore")
-fetch("https://jsonplaceholder.typicode.com/users")
-.then((res)=>{
-    return res.json()
-})
-.then((data)=>{
-    // console.log(data);
-    render(data)
-    
-})
 
-function render(data){
-   let dataItems = "";
+let dataStore = document.getElementById("datastore");
 
-   for(let i=0; i<data.length; i++){
-    dataItems += `
-    <li><p>${data[i].name}</p></li>`
-   }
-   dataStore.innerHTML = dataItems
+fetch("https://dog.ceo/api/breeds/image/random")
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+      console.log(data);
+      render(data.message);
+  });
+
+function render(url){
+
+  dataStore.innerHTML =  `<img src= ${url} alt=>`
 }
