@@ -1,27 +1,27 @@
+
+
+
 /**
-Challenge:
+Challenge: 
 
-1. Fetch a random image from the Dog API again 
-(https://dog.ceo/api/breeds/image/random)
+1. Fetch a random activity from the Bored API
+url: https://apis.scrimba.com/bored/api/activity
 
-2. Access the DOM and insert the URL you got from the
-API as an image src property (probably easiest if 
-you create the image completely here in the JS and add 
-it as the innerHTML of another element on the DOM)
+2. Display the text of the activity in the browser
 */
 
-let dataStore = document.getElementById("datastore");
+const dataTitle = document.getElementById("datatitle")
+fetch("https://apis.scrimba.com/bored/api/activity")
+.then((res)=>{
+return res.json()
+})
+.then((data)=>{
+    console.log(data);
+    render(data.activity)
+    
+})
 
-fetch("https://dog.ceo/api/breeds/image/random")
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-      console.log(data);
-      render(data.message);
-  });
-
-function render(url){
-
-  dataStore.innerHTML =  `<img src= ${url} alt=>`
+function render(activity){
+    dataTitle.textContent = activity
 }
+
