@@ -1,27 +1,22 @@
-
-
-
 /**
 Challenge: 
 
-1. Fetch a random activity from the Bored API
-url: https://apis.scrimba.com/bored/api/activity
+When the button is clicked, call out to the Bored API
+(URL: https://apis.scrimba.com/bored/api/activity)
+and replace the h4 with the activity from the API
 
-2. Display the text of the activity in the browser
 */
 
-const dataTitle = document.getElementById("datatitle")
-fetch("https://apis.scrimba.com/bored/api/activity")
-.then((res)=>{
-return res.json()
-})
-.then((data)=>{
-    console.log(data);
-    render(data.activity)
-    
-})
+const dataTitle = document.getElementById("datatitle");
+const dataElement = document.getElementById("dataelement");
+const requestBtn = document.getElementById("requestbtn");
 
-function render(activity){
-    dataTitle.textContent = activity
-}
-
+requestBtn.addEventListener("click", function () {
+  fetch("https://apis.scrimba.com/bored/api/activity")
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+    dataElement.textContent = data.activity;
+    });
+});
