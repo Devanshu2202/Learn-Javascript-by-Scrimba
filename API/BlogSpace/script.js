@@ -48,6 +48,7 @@ document.getElementById("my-form").addEventListener("submit", function(e) {
           console.log(post);
           
           renderPosts(postsArray)
+          document.getElementById("my-form").reset()
            
         })
 })
