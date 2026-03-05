@@ -13,17 +13,15 @@ Part 2 - add the .then blocks to check the data coming back
 
 */
 
-fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
-    method: "POST",
-    body: JSON.stringify({
-        title: "Buy Milk",
-        completed: false
-    })
-})
-.then((res)=>{
-    return res.json()
-})
-.then((data)=>{
-    console.log(data);
-    
-})
+fetch("https://api.freeapi.app/api/v1/public/randomproducts/1")
+  .then((res) => {
+    console.log("Response received");   // Debug
+    return res.json();
+  })
+  .then((resdata) => {
+    console.log("Full Data:", resdata);
+    console.log("Status Code:", resdata.data.title);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
