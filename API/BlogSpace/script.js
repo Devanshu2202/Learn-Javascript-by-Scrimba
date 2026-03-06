@@ -1,47 +1,56 @@
-// fetch("https://apis.scrimba.com/jsonplaceholder/posts")
-//   .then((res) => res.json())
-//   .then((data) => {
-//     const postsArr = data.slice(0, 5);
-//     let html = "";
-//     for (let post of postsArr) {
-//       html += `
-//                 <h3>${post.title}</h3>
-//                 <p>${post.body}</p>
-//                 <hr />
-//             `;
-//     }
-//     document.getElementById("blog-list").innerHTML = html;
-//   });
+let postsArray = []
 
-/**
- Challenge:
- 
- * Listen for the "submit" event on the form (which will happen when the button is clicked)
-    * (Don't forget to preventDefault on the form so it doesn't refresh your page. Google "form preventDefault" if you're not sure what I'm talking about)
- * Combine the title value and body value into an object (with a "title" property and "body" property)
- * Log the object to the console
+function renderPosts() {
+  let html = ""
+  for (let post of postsArray) {
+    html += `
+    <h3>${post.title}</h3>
+    <p>${post.body}</p>
+    <hr />
+    `
+  }
+  document.getElementById("blog-list").innerHTML = html
+}
 
-*/
-let myForm = document.getElementById("my-form");
-let postTitleInput = document.getElementById("post-title")
-let postBodyInput = document.getElementById("post-body")
-// const postBtn = document.getElementById("post-btn");
-myForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+.then(res => res.json())
+.then(data => {
+  
+  postsArray = data.slice(0, 5)
+  
+  renderPosts()
+    })
 
-    const postTitle = postTitleInput.value
-    const postBody = postBodyInput.value
+document.getElementById("my-form").addEventListener("submit", function(e) {
+    e.preventDefault()
+    const postTitle = document.getElementById("post-title").value
+    const postBody = document.getElementById("post-body").value
+    const data = {
+        title: postTitle,
+        body: postBody
+    }
+    
+    const options = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+    
+    fetch("https://apis.scrimba.com/jsonplaceholder/posts", options)
+        .then(res => res.json())
+        .then(post => {
 
-  const value = {
-    title: postTitle,
-    body: postBody, 
-  };
-  console.log(value);
 
-  postTitleInput.value = ""
-  postBodyInput.value = ""
-});
+          postsArray.unshift(post)
 
-
+          console.log(post);
+          
+          renderPosts(postsArray)
+          document.getElementById("my-form").reset()
+              
+        })
+})
 
 
