@@ -49,7 +49,7 @@ document.getElementById("my-form").addEventListener("submit", function(e) {
           
           renderPosts(postsArray)
           document.getElementById("my-form").reset()
-           
+              
         })
 })
 
