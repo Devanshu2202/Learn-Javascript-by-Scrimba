@@ -34,3 +34,16 @@ fetch("https://apis.scrimba.com/openweathermap/data/2.5/weather?q=Ahmedabad")
   console.log(data);
   
 })
+
+ /**
+ * Challenge: Define our anonymous callback function as a separate function, then
+ * pass it as the 2nd parameter to our addEventListener
+ */
+
+ let shuffle = function (){
+    fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+        .then(res => res.json())
+        .then(data => console.log(data))
+}
+
+document.getElementById("deck-btn").addEventListener("click", shuffle)
