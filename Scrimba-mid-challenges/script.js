@@ -1,71 +1,29 @@
-// function handleClick() {
-//     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-//         .then(res => res.json())
-//         .then(data => console.log(data))
-// }
-
-// document.getElementById("new-deck").addEventListener("click", handleClick)
-
-// function callback() {
-//     console.log("I finally ran!")
-// }
-
-// setTimeout(callback, 2000)
-
-// const people = [
-//     { name: "Jack", hasPet: true },
-//     { name: "Jill", hasPet: false },
-//     { name: "Alice", hasPet: true },
-//     { name: "Bob", hasPet: false },
-// ]
-
-// function gimmeThePets(number) {
-//     return person.hasPet
-// }
-
-// const peopleWithPets = people.filter(gimmeThePets)
-// console.log(peopleWithPets)
-
-
 /**
- * Challenge: 
+ * Time to be curious!
  * 
- * Write your own filter function! Don't worry about adding it to the prototype of arrays or anything.
- * This function should take 2 parameters:
- * 1. The array you want to filter through, and
- * 2. A callback function
+ * What would happen if you didn't return res.json() 
+ * from the first .then block?
  * 
- * Steps for filterArray function logic:
- * 1. Initialize a new, empty array which will be returned at the end of the filterArrays operations (Completed ✅)
- * 2. Loop through the array passed as the 1st parameter
- * 3. Inside the loop, call the callback function, passing the individual item you're currently looping over as the argument to your callback function
- * 4. If the callback function returns true, push the current item you're iterating on in the loop to the new array. If it returns false, don't push it to the array.
- * 5. When the loop is over, return the new array
+ * What would the next .then() callback receive as its 
+ * parameter if you returned something totally different??
  */
 
-const people = [
-    { name: "Jack", hasPet: true },
-    { name: "Jill", hasPet: false },
-    { name: "Alice", hasPet: true },
-    { name: "Bob", hasPet: false },
-]
+/**
+ * Challenge:
+ * 
+ * pass the string "World" down to a 3rd .then() block
+ * and log it to the console inside the body of this new
+ * 3rd .then() block
+ */
 
-function filterArray(array, callback) {
-    const resultingArray = []
-
-    for (let i = 0; i < array.length; i++) {
-        if (callback(array[i])) {
-            resultingArray.push(array[i])
-        }
-    }
-
-    return resultingArray
-}
-
-function hasPet(person) {
-    return person.hasPet
-}
-
-const peopleWithPets = filterArray(people, hasPet)
-
-console.log(peopleWithPets)
+fetch("https://apis.scrimba.com/bored/api/activity")
+    .then(function(res) {
+        return "Hello"
+    })
+    .then(function(whatever) {
+        console.log(whatever)   
+        return "World"
+    })
+    .then(function(world){
+        console.log(world)    
+    })
