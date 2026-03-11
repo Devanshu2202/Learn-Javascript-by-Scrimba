@@ -1,50 +1,36 @@
-let deckId;
+let deckId
+const cardsContainer = document.getElementById("cards")
+const newDeckBtn = document.getElementById("new-deck")
+const drawCardBtn = document.getElementById("draw-cards")
 
 function handleClick() {
-  fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      deckId = data.deck_id;
-    });
+    fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+        .then(res => res.json())
+        .then(data => {
+            deckId = data.deck_id
+        })
 }
 
-document.getElementById("new-deck").addEventListener("click", handleClick)
+newDeckBtn.addEventListener("click", handleClick)
 
-
-function handleCards() {
-  fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data.cards);
-
-      const container = document.getElementById("cards-container");
-
-      container.innerHTML = "";
-
-      data.cards.forEach((card) => {
-        const img = document.createElement("img");
-        img.src = card.image;
-        img.style.width = "120px";
-        container.appendChild(img);
-      });
-    });
-}
-document.getElementById("new-cards").addEventListener("click", handleCards);
-
+drawCardBtn.addEventListener("click", () => {
+    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+        .then(res => res.json())
+        .then(data => {
+            cardsContainer.children[0].innerHTML = `
+                <img src=${data.cards[0].image} class="card" />
+            `
+            cardsContainer.children[1].innerHTML = `
+                <img src=${data.cards[1].image} class="card" />
+            `
+        })
+})
 /**
- * Challenge
- *
- * Task: Using the saved deckId, draw 2 new cards from the deck
- *
- * Docs for original Deck of Cards API: https://deckofcardsapi.com/#draw-card
- * BaseUrl you'll use: https://apis.scrimba.com/deckofcards/api/deck/
- * (that will replace the base url of https://deckofcardsapi.com/api/deck/)
- * that you'll see in the deck of cards API docs.
- *
- * 1. Create a new button that, when clicked, draws 2 cards from the deckId
- * you have saved
- *      Note: you'll need to get a new deck every time you refresh the page,
- *      since you're only saving your deckId in a local variable right now
- * 2. Log those 2 cards to the console
+ * Challenge:
+ * 
+ * Place each of the cards we draw into its respective card-slot
+ * Hint: consider using element.children in the DOM instead of
+ * giving each card-slot its own unique ID
+ * 
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/children
  */
