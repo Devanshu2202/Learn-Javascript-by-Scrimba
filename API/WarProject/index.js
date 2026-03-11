@@ -25,7 +25,7 @@ function handleCards() {
       data.cards.forEach((card) => {
         const img = document.createElement("img");
         img.src = card.image;
-        img.style.width = "100px";
+        img.style.width = "120px";
         container.appendChild(img);
       });
     });
