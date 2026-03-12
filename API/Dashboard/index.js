@@ -16,20 +16,6 @@
  * https://css-tricks.com/perfect-full-page-background-image/#awesome-easy-progressive-css3-way)
  */
 
-// const background = document.getElementById("background-image")
-
-// fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
-// .then((res)=>{
-//     return res.json()
-// })
-// .then((data)=>{
-//     console.log(data);
-//     const image = data.urls.raw
-//     // console.log("image",image);
-
-//     document.body.style.backgroundImage = `url('${image}')`
-// })
-
 async function getbackgroundimage() {
   try {
     const imageRes = await fetch(
@@ -38,7 +24,7 @@ async function getbackgroundimage() {
     const imageData = await imageRes.json();
     const name = imageData.user.name;
     
-    document.getElementById("author-name").textContent =`By: ${name}`;
+    document.getElementById("author").textContent =`By: ${name}`;
     document.body.style.backgroundImage = `url('${imageData.urls.full}')`;
   } catch (err) {
     console.log("image error", err);
