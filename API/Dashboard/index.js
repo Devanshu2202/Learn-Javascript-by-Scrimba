@@ -28,6 +28,50 @@ async function getbackgroundimage() {
     document.body.style.backgroundImage = `url('${imageData.urls.full}')`;
   } catch (err) {
     console.log("image error", err);
+
+    document.body.style.backgroundImage = `url(https://plus.unsplash.com/premium_photo-1681578990806-c0f5dd8984bd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D)`
+
   }
 }
 getbackgroundimage();
+
+/**
+Challenge: Get current data on a cryptocurrency from the list below
+    * bitcoin
+    * dogecoin
+    * ethereum
+    * litecoin
+
+1. Search the API docs for an endpoint that will 
+   get you the "current data for a coin"
+   (https://www.coingecko.com/api/documentations/v3#/)
+
+2. Execute a test request from the API docs and skim through 
+   the data for anything that you may find interesting to use
+   in the dashboard
+*/
+
+
+async function getCoin(){
+    try{
+        const coinData = await fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
+
+        const data = await coinData.json()
+        console.log(data);
+        
+
+        document.getElementById("crypto").innerHTML = `
+        <img src="${data.image.thumb}" />
+        <strong>${data.name}</strong>
+        <p> $ ${data.market_data.current_price.usd}</p>
+        <p> $ ${data.market_data.high_24h.usd}</p>
+        <p> $ ${data.market_data.low_24h.usd}</p>
+        `
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+getCoin()
+
