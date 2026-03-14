@@ -30,3 +30,15 @@ div.top {
 h1.time {
     text-align: center;
 }
+#crypto img{
+width:40px;
+vertical-align: middle;
+}
+
+#crypto span{
+font-size:20px;
+margin-left:5px;
+}
+#time{
+    text-align: center;
+}

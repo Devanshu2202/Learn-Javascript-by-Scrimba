@@ -18,3 +18,4 @@ The task we wanted to perform finished successfully.
 .then() method
 
 ?? - How do we handle a promise that has been rejected?
+
