@@ -1,75 +1,104 @@
-fetch(
-  "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature",
-)
-  .then((res) => res.json())
-  .then((data) => {
-    document.body.style.backgroundImage = `url(${data.urls.regular})`;
-    document.getElementById("author").textContent = ` By: ${data.user.name}`;
-  })
-  .catch((err) => {
-    // Use a default background image/author
-    document.body.style.backgroundImage = `url(https://images.unsplash.com/photo-1560008511-11c63416e52d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTEwMjl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI4NDIxMTc&ixlib=rb-1.2.1&q=80&w=1080
-)`;
-    document.getElementById("author").textContent = ` By: Dodi Achmad`;
-  });
 
-fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
-  .then((res) => {
+async function getImage() {
+  try {
+    const res = await fetch(
+      "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature"
+    )
+
+    const data = await res.json()
+
+    document.body.style.backgroundImage = `url(${data.urls.regular})`
+
+    document.getElementById("author").textContent = `By: ${data.user.name}`
+  } catch (err) {
+    document.body.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1560008511-11c63416e52d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080)"
+
+    document.getElementById("author").textContent = `By: Dodi Achmad`
+  }
+}
+
+getImage()
+
+
+async function getCrypto() {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
+
+    console.log("res",res);
+    
+
     if (!res.ok) {
-      throw Error("Something went wrong");
+      throw Error("Something went wrong")
     }
-    return res.json();
-  })
-  .then((data) => {
+
+    const data = await res.json()
+
     document.getElementById("crypto-top").innerHTML = `
-            <img src=${data.image.small} />
-            <span>${data.name}</span>
-        `;
+        <img src="${data.image.small}" />
+        <span>${data.name}</span>
+    `
+
     document.getElementById("crypto").innerHTML += `
-            <p>🎯: $${data.market_data.current_price.usd}</p>
-            <p>👆: $${data.market_data.high_24h.usd}</p>
-            <p>👇: $${data.market_data.low_24h.usd}</p>
-        `;
-  })
-  .catch((err) => console.error(err));
+        <p>🎯: $${data.market_data.current_price.usd}</p>
+        <p>👆: $${data.market_data.high_24h.usd}</p>
+        <p>👇: $${data.market_data.low_24h.usd}</p>
+    `
+  } catch (err) {
+    console.error(err)
+  }
+}
 
-/**
- * Challenge: log the current time to the console, formatted
- * like this:
- *
- * 1:30 PM
- *
- * Use Google and Stack Overflow to find the best way.
- *
- * Good luck! 👍
- */
+getCrypto()
 
-const now = new Date();
-const formattedTime = now.toLocaleString([], {
-  hour: 'numeric',
-  minute: "2-digit",
-  hour12: true,
-}).toUpperCase()
 
-console.log("formattedTime", formattedTime);
-document.getElementById("time").textContent = formattedTime
-// Example output: "1:30 PM" (output may vary slightly based on user's browser locale)
+function updateTime() {
+  const now = new Date()
 
-fetch("https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=28.5355&lon=77.3910&units=metric")
-  .then(res => res.json())
-  .then(data => {
-      console.log(data)
+  const formattedTime = now
+    .toLocaleString([], {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+    .toUpperCase()
 
-      const name = data.name
+  document.getElementById("time").textContent = formattedTime
+}
 
-      console.log("name",name);
-      
-      const temp = Math.trunc(data.main.temp)
+updateTime()
+setInterval(updateTime, 1000)
 
-      document.getElementById("weather").innerHTML= `<p>${temp}°C</p>
-      <p>${name}</p>
-      `
-      
 
-     
-  })
+async function getWeather(lat, lon) {
+  try {
+    const res = await fetch(
+      `https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`
+    )
+
+    const data = await res.json()
+
+    const temp = Math.trunc(data.main.temp)
+    const city = data.name
+    const icon = data.weather[0].icon
+
+    document.getElementById("weather").innerHTML = `
+        <img src="https://openweathermap.org/img/wn/${icon}@2x.png" />
+        <p>${temp}°C</p>
+        <p>${city}</p>
+    `
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+
+navigator.geolocation.getCurrentPosition((position) => {
+  const lat = position.coords.latitude
+  const lon = position.coords.longitude
+
+  console.log("Latitude:", lat)
+  console.log("Longitude:", lon)
+
+  getWeather(lat, lon)
+})
