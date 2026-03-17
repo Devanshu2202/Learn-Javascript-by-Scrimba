@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+#reactfact {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #282c34;
+  color: white;
+  padding: 15px 25px;
+}
+
+header img {
+  width: 40px;
+}
+
+/* Main Content */
+main {
+  flex: 1;
+  background-color: #282d35;
+  padding: 30px 40px;
+  background-image: url("./reactjsicon.png");
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+main h1 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+ul {
+  color: white;
+  line-height: 3;
+  padding-left: 20px;
+}
+
+li::marker {
+  color: #61dafb;
+}
