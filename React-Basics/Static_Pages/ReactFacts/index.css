@@ -53,3 +53,29 @@ ul {
 li::marker {
   color: #61dafb;
 }
+
+nav{
+  width:100% ;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+
+  gap: 50px;
+  background-color: #282c34;
+  color: white;
+  padding: 15px 25px;
+  
+}
+
+ li{
+  gap: 50px;
+   list-style-type: none;
+ 
+}
+
+small{
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
