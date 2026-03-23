@@ -11,10 +11,10 @@ const Header = () => {
           <li className="hover:text-blue-600 cursor-pointer">Pricing</li>
           <li className="hover:text-blue-600 cursor-pointer">About</li>
           <li className="hover:text-blue-600 cursor-pointer">Contact</li>
-        </ul> 
+        </ul>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header       
+export default Header;
