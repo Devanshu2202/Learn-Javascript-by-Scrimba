@@ -1,44 +1,69 @@
-const Maintext = () => {
-  return (
-    <div>
-      <div className="flex gap-2 w-full justify border border-gray-400 px-4 items-center p-2 rounded-xl bg-gray-100">
-        <input
-          className="flex-1 ml-2 outline-none w-2xs"
-          placeholder="e.g oregano"
-          type="text"
-        />
-        <button className="bg-black text-white px-2 py-2 rounded-xl">
-          + Add ingridient
-        </button>
-      </div>
+import { useState } from "react";
 
-      <div className="py-10">
-        {" "}
-        <h1 className="text-4xl py-4 font-medium ">Ingredient on hand:</h1>
-        <ul className="py-5 ml-5 list-disc flex flex-col gap-5">
-          <li>Chicken breasts</li>
-          <li>Most of the main spices</li>
-          <li>Olive oil</li>
-          <li>Heavy cream</li>
-          <li>Chicken broth</li>
-          <li>Parmesan cheese</li>
-          <li>Spinach</li>
+const Maintext = () => {
+  const [ingredientList, setIngredientList] = useState([]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const value = formData.get("ingredient");
+
+    if (value.trim() === "") return;
+
+    setIngredientList([...ingredientList, value]);
+    e.target.reset();
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto mt-10 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex gap-3 bg-white shadow-md border border-gray-200 p-3 rounded-2xl"
+      >
+        <input
+          name="ingredient"
+          placeholder="e.g oregano"
+          className="flex-1 px-4 py-2 rounded-xl outline-none border border-gray-200 focus:ring-2 focus:ring-orange-400"
+        />
+
+        <button
+          type="submit"
+          className="bg-black text-white px-7 py-2 rounded-xl hover:bg-gray-800 transition"
+        >
+          + Add Ingredient
+        </button>
+      </form>
+
+      <div className="mt-8">
+        <h1 className="text-2xl font-semibold mb-4">Ingredients on hand:</h1>
+
+        <ul className="space-y-3">
+          {ingredientList.map((item, index) => (
+            <li
+              key={index}
+              className="bg-gray-100 px-4 py-2 rounded-xl shadow-sm"
+            >
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
 
-      <div className="bg-[#f0efeb] flex justify-between rounded-xl py-10">
-        <div className="ml-10">
-          <h2 className="text-xl font-semibold">Ready for a recipe?</h2>
-          <p>Generate a recipe from your list of ingredients</p>
+      <div className="mt-10 bg-orange-50 flex justify-between items-center p-5 rounded-2xl shadow-sm">
+        <div>
+          <h2 className="text-lg font-semibold">Ready for a recipe?</h2>
+          <p className="text-sm text-gray-600">
+            Generate a recipe from your list
+          </p>
         </div>
 
-        <div>
-          <button className="bg-orange-500 py-2 px-6 rounded-xl mr-10">
-            Get a recipe
-          </button>
-        </div>
+        <button className="bg-orange-500 text-white px-5 py-2 rounded-xl hover:bg-orange-600 transition">
+          Get Recipe
+        </button>
       </div>
     </div>
   );
 };
+
 export default Maintext;
