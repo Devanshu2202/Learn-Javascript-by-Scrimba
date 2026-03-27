@@ -11,7 +11,7 @@ const Maintext = () => {
 
     if (value.trim() === "") return;
 
-    setIngredientList([...ingredientList, value]);
+    setIngredientList((prevIngredientList) => [...prevIngredientList, value]);
     e.target.reset();
   }
 
