@@ -2,11 +2,35 @@ import "./App.css";
 
 function App() {
   function userData(formData) {
-    const userName = formData.get("username");
-    const userExperience = formData.get("experience");
+    const data = Object.fromEntries(formData.entries());
 
-    console.log("userName", userName);
-    console.log("userExperience", userExperience);
+    if (!data.username || !data.email || !data.mobile) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    console.log(data);
+    // const userName = formData.get("username");
+    // const userExperience = formData.get("experience");
+    // const userYear = formData.get("year");
+    // const userMonth = formData.get("Month");
+    // const userCurrency = formData.get("currency");
+    // const userSalary = formData.get("salary");
+    // const userSalaryBreakdown = formData.get("salaryBreakdown");
+    // const userlocation = formData.get("location");
+    // const usermobile = formData.get("mobile");
+    // const userEmail = formData.get("email");
+
+    // console.log("userName", userName);
+    // console.log("userExperience", userExperience);
+    // console.log("userYear", userYear);
+    // console.log("userMonth", userMonth);
+    // console.log("userCurrency", userCurrency);
+    // console.log("userSalary", userSalary);
+    // console.log("userSalaryBreakdown", userSalaryBreakdown);
+    // console.log("userlocation", userlocation);
+    // console.log("usermobile", usermobile);
+    // console.log("userEmail", userEmail);
   }
 
   return (
@@ -51,11 +75,13 @@ function App() {
           <div className="flex gap-4">
             <input
               type="text"
+              name="year"
               placeholder="Year"
               className="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
             />
             <input
               type="text"
+              name="Month"
               placeholder="Month"
               className="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
             />
@@ -67,13 +93,14 @@ function App() {
           <p className="text-sm text-gray-500 mb-2">Helps find relevant jobs</p>
 
           <div className="flex gap-3">
-            <select className="border rounded-xl px-3 py-2">
+            <select name="currency" className="border rounded-xl px-3 py-2">
               <option>$</option>
               <option>₹</option>
             </select>
 
             <input
               type="text"
+              name="salary"
               placeholder="e.g 450000"
               className="w-full border rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"
             />
@@ -84,6 +111,7 @@ function App() {
           <p className="font-medium">Salary breakdown</p>
           <input
             type="text"
+            name="salaryBreakdown"
             placeholder="Select salary components"
             className="w-full border rounded-xl px-3 py-2 mt-2 focus:ring-2 focus:ring-blue-400 outline-none"
           />
@@ -111,11 +139,25 @@ function App() {
         <div>
           <p className="font-medium">Mobile number</p>
           <p className="text-sm text-gray-500">Recruiters will contact you</p>
+
+          <input
+            type="tel"
+            name="mobile"
+            placeholder="Enter mobile number"
+            className="w-full border rounded-xl px-3 py-2 mt-2 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
         </div>
 
         <div>
           <p className="font-medium">Email Address</p>
           <p className="text-sm text-gray-500">We will send updates</p>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            className="w-full border rounded-xl px-3 py-2 mt-2 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
         </div>
 
         <div>
@@ -123,6 +165,12 @@ function App() {
           <p className="text-sm text-gray-500">
             Lets recruiters know availability
           </p>
+          <input
+            type="number"
+            name="text"
+            placeholder="Enter Notice"
+            className="w-full border rounded-xl px-3 py-2 mt-2 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
         </div>
 
         <button

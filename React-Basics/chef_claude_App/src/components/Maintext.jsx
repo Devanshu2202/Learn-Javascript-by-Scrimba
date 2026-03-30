@@ -35,33 +35,39 @@ const Maintext = () => {
         </button>
       </form>
 
-      <div className="mt-8">
-        <h1 className="text-2xl font-semibold mb-4">Ingredients on hand:</h1>
+      {ingredientList.length > 0 && (
+        <section>
+          <div className="mt-8">
+            <h1 className="text-2xl font-semibold mb-4">
+              Ingredients on hand:
+            </h1>
 
-        <ul className="space-y-3">
-          {ingredientList.map((item, index) => (
-            <li
-              key={index}
-              className="bg-gray-100 px-4 py-2 rounded-xl shadow-sm"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
+            <ul className="space-y-3">
+              {ingredientList.map((item, index) => (
+                <li
+                  key={index}
+                  className="bg-gray-100 px-4 py-2 rounded-xl shadow-sm"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-      <div className="mt-10 bg-orange-50 flex justify-between items-center p-5 rounded-2xl shadow-sm">
-        <div>
-          <h2 className="text-lg font-semibold">Ready for a recipe?</h2>
-          <p className="text-sm text-gray-600">
-            Generate a recipe from your list
-          </p>
-        </div>
+          <div className="mt-10 bg-orange-50 flex justify-between items-center p-5 rounded-2xl shadow-sm">
+            <div>
+              <h2 className="text-lg font-semibold">Ready for a recipe?</h2>
+              <p className="text-sm text-gray-600">
+                Generate a recipe from your list
+              </p>
+            </div>
 
-        <button className="bg-orange-500 text-white px-5 py-2 rounded-xl hover:bg-orange-600 transition">
-          Get Recipe
-        </button>
-      </div>
+            <button className="bg-orange-500 text-white px-5 py-2 rounded-xl hover:bg-orange-600 transition">
+              Get Recipe
+            </button>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
