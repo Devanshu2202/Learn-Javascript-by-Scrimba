@@ -137,6 +137,7 @@ const Maintext = () => {
                 <li>Reduce heat and simmer 15–20 minutes.</li>
                 <li>Cook pasta according to package instructions.</li>
                 <li>Mix pasta with sauce and toss well.</li>
+
                 <li>Serve hot with basil or grated Parmesan cheese.</li>
               </ol>
             </div>
