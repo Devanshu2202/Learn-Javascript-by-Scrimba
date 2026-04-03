@@ -1,6 +1,4 @@
 const ClaudeRecipe = ({ shownrecipe, recipe }) => {
-  console.log("recipe::", recipe);
-
   return (
     <div>
       {shownrecipe && (

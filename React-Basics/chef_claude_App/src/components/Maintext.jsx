@@ -3,10 +3,7 @@ import ClaudeRecipe from "./ClaudeRecipe.jsx";
 import IngredientsList from "./IngredientsList";
 import { InferenceClient } from "@huggingface/inference";
 
-const MODEL_URL =
-  "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2";
-const API_TOKEN = "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";
-const hf = new InferenceClient(API_TOKEN);
+const hf = new InferenceClient(import.meta.env.VITE_HF_TOKEN);
 
 const Maintext = () => {
   const [ingredientList, setIngredientList] = useState([]);
@@ -14,8 +11,6 @@ const Maintext = () => {
   const [recipe, setRecipe] = useState("");
 
   const generateRecipe = async () => {
-    // 2. Craft the Prompt (Prompt Engineering)
-    // We tell the AI exactly what persona to adopt and what structure we want back.
     const prompt = `[INST] You are an expert chef. Create a delicious recipe using these specific ingredients: ${ingredientList.join(",")}. 
     You may also include basic pantry staples like salt, pepper, cooking oil, and water.
     
@@ -39,28 +34,12 @@ const Maintext = () => {
         temperature: 0.7,
       });
 
-      // if (!res.ok) {
-      //   throw new Error(API error: ${res.status});
-      // }
-
       const aiRecipe = response.choices[0].message.reasoning;
-      // console.log("aiRecipe ::::", aiRecipe);
 
       setRecipe(aiRecipe);
       setShownRecipe(true);
-
-      // console.log("API response", response);
-
-      // if (result && result.length > 0 && result[0].generated_text) {
-      //   setRecipe(result[0].generated_text);
-      // } else {
-      //   throw new Error("Received an unexpected format from the AI.");
-      // }
     } catch (err) {
       console.error(err);
-      // setError("Oops! The AI chef burned the food. Please try again.");
-    } finally {
-      // setIsLoading(false);
     }
   };
 
@@ -102,6 +81,7 @@ const Maintext = () => {
         setShownRecipe={setShownRecipe}
         generateRecipe={generateRecipe}
       />
+
       <ClaudeRecipe shownrecipe={shownrecipe} recipe={recipe} />
     </div>
   );

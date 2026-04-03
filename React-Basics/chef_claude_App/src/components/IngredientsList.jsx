@@ -10,7 +10,7 @@ const IngredientsList = ({
   }
   return (
     <div>
-      {ingredientList.length > 2 && (
+      {ingredientList.length > 0 && (
         <section>
           <div className="mt-8">
             <h1 className="text-2xl font-semibold mb-4">
