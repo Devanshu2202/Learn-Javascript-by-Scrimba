@@ -3,7 +3,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 const IngredientsList = ({
   ingredientList,
   setIngredientList,
-  setShownRecipe,
+  generateRecipe,
 }) => {
   function handleDelete(itemToDelete) {
     setIngredientList((prev) => prev.filter((item) => item !== itemToDelete));
@@ -41,7 +41,7 @@ const IngredientsList = ({
             </div>
 
             <button
-              onClick={() => setShownRecipe((prev) => !prev)}
+              onClick={generateRecipe}
               className="bg-orange-500 text-white px-5 py-2 rounded-xl hover:bg-orange-600 transition"
             >
               Get Recipe
