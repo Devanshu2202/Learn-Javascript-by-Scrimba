@@ -22,7 +22,7 @@ const MemeGenerator = () => {
             placeholder="Top Text"
             value={topText}
             onChange={(e) => setTopText(e.target.value)}
-            className="border rounded-md p-2 w-full"
+            className="border rounded-md p-3 w-full"
           />
 
           <input
@@ -30,7 +30,7 @@ const MemeGenerator = () => {
             placeholder="Bottom Text"
             value={bottomText}
             onChange={(e) => setBottomText(e.target.value)}
-            className="border rounded-md p-2 w-full"
+            className="border rounded-md p-3 w-full"
           />
         </div>
 
