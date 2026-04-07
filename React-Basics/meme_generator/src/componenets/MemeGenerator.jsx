@@ -32,12 +32,15 @@ const MemeGenerator = () => {
       [name]: value,
     }));
   }
-  function getImage() {
-    if (allmeme.length === 0) return;
-    const randomIndex = Math.floor(Math.random() * allmeme.length);
+  function handleCreateMeme() {
+    let randomIndex = Math.floor(
+      Math.random() * (allmeme.length > 0 ? allmeme.length : 100),
+    );
 
     console.log("randomIndex", randomIndex);
-    const randomMeme = allmeme[randomIndex].url;
+    const randomMeme =
+      allmeme[randomIndex]?.url ||
+      "https://static.vecteezy.com/system/resources/thumbnails/033/002/529/small/shocked-cat-with-wide-open-mouth-ai-generative-photo.jpg";
 
     setMemeText((prev) => ({
       ...prev,
@@ -75,7 +78,7 @@ const MemeGenerator = () => {
         </div>
 
         <button
-          onClick={getImage}
+          onClick={handleCreateMeme}
           className="w-full mt-4 bg-purple-700 text-white py-2 rounded-md hover:bg-purple-800 transition"
         >
           Get a new meme image
