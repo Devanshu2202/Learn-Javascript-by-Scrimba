@@ -16,10 +16,6 @@ const MemeGenerator = () => {
       .then((res) => res.json())
       .then((data) => setAllMeme(data.data.memes));
   }, []);
-  //generate random number
-
-  // const memeImage =
-  //   "https://wompimages.ampify.care/fetchimage?siteId=7575&v=2&jpgQuality=100&width=700&url=https%3A%2F%2Fi.kym-cdn.com%2Fphotos%2Fimages%2Fnewsfeed%2F001%2F179%2F956%2F8f1.jpg";
 
   function handleChange(e) {
     const { name, value } = e.target;
