@@ -9,8 +9,6 @@ const MemeGenerator = () => {
       "https://wompimages.ampify.care/fetchimage?siteId=7575&v=2&jpgQuality=100&width=700&url=https%3A%2F%2Fi.kym-cdn.com%2Fphotos%2Fimages%2Fnewsfeed%2F001%2F179%2F956%2F8f1.jpg",
   });
 
-  // console.log("memeText", memeText);
-
   useEffect(() => {
     fetch("https://api.imgflip.com/get_memes")
       .then((res) => res.json())
