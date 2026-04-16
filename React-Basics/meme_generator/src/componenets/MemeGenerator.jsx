@@ -18,9 +18,6 @@ const MemeGenerator = () => {
   function handleChange(e) {
     const { name, value } = e.target;
 
-    // console.log("name", name);
-    // console.log("value", value);
-
     setMemeText((prevData) => ({
       ...prevData,
       [name]: value,
